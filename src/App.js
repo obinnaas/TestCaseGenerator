@@ -5,28 +5,28 @@ import logo from './logo.svg';
 
 const testOptions = {
   'Feed/Data Ingestion': (column) => ({
-    test_case: `Verify that data for ${column} is ingested correctly from the feed`,
-    expected_result: `Data for ${column} should be ingested correctly from the feed`,
+    test_case: `Validate that the "${column}" column in the ingested data corresponds to the expected data type, value and the business rules/implemented logic are accurate`,
+    expected_result: `The "${column}" column in the ingested data should correspond to the expected data type, value and the business rules/implemented logic are accurate`
   }),
   'Report Automation': (column) => ({
-    test_case: `Verify that the report for ${column} is generated automatically`,
-    expected_result: `The report for ${column} should be generated automatically`,
+    test_case: `Validate that the "${column}" column is in the right format and generated based on logic provided`,
+    expected_result: `The "${column}" column should be in the right format and generated based on logic provided.`
   }),
   'Feed/Column Modification': (column) => ({
-    test_case: `Verify that the feed/column for ${column} is modified correctly`,
-    expected_result: `The feed/column for ${column} should be modified correctly`,
+    test_case: `Validate that the modified/added ingested "${column}" column  is in the right datatype format, value and the business rules/implemented logic is accurate`,
+    expected_result: `The modified/added ingested "${column}" column  is in the right datatype format, value and the business rules/implemented logic is accurate`
   }),
   'API development': (column) => ({
-    test_case: `Verify that the API for ${column} is developed correctly`,
-    expected_result: `The API for ${column} should be developed correctly`,
+    test_case: `Validate that the "${column}" attribute matches the expected format, structure and value.`,
+    expected_result: `The "${column}" attribute should match the expected format, structure and value.`
   }),
   'PowerBI Report': (column) => ({
-    test_case: `Verify that the PowerBI report for ${column} is generated correctly`,
-    expected_result: `The PowerBI report for ${column} should be generated correctly`,
+    test_case: `Verify that the "${column}" metric matches the expected values and visualizations accurately represent the data and adhere to the intended design`,
+    expected_result: `The "${column}" metric matches the expected values and visualizations accurately represent the data and adhere to the intended design.`
   }),
   'Column Decoding': (column) => ({
-    test_case: `Verify that the column for ${column} is decoded correctly`,
-    expected_result: `The column for ${column} should be decoded correctly`,
+    test_case: `Validate that the "${column}" column is decoded correctly and the values and datatype is in the specified format and logic`,
+    expected_result: `The "${column}" column should be decoded correctly and values and datatype and are in the specified format and logic`
   }),
 };
 
@@ -112,6 +112,7 @@ function App() {
           )}
         </div>
       </div>
+      
       {testCases.length > 0 && (
         <>
           <table>
