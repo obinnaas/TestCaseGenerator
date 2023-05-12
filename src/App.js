@@ -68,7 +68,7 @@ function App() {
   return (
     <div className="App">
       <img src={logo} alt="Logo" className="logo" />
-      <h1>Test Case Generator</h1>
+      <h2>Test Case Generator</h2>
       <div className="input-container">
         <div class="parent-container">
         <div className="input-field">

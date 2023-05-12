@@ -53,15 +53,15 @@ select {
   margin-right: 10px; 
 }
 
-h1 {
+h2 {
   display: flex;
   align-items: center;
 }
-h1 {
+h2 {
   background-color: #FFCB04;
   width: 50%;
   color: #000;
-  height: 70px; 
+  height: 60px; 
   display: flex;
   justify-content: center;
   align-items: center;
