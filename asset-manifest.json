@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/TestCaseGenerator/static/css/main.0a029308.css",
+    "main.js": "/TestCaseGenerator/static/js/main.17545f32.js",
+    "static/js/787.28cb0dcd.chunk.js": "/TestCaseGenerator/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/TestCaseGenerator/index.html",
+    "static/media/logo.svg": "/TestCaseGenerator/static/media/logo.73c0f0451b4dbea527fba4249b8e1047.svg",
+    "main.0a029308.css.map": "/TestCaseGenerator/static/css/main.0a029308.css.map",
+    "main.17545f32.js.map": "/TestCaseGenerator/static/js/main.17545f32.js.map",
+    "787.28cb0dcd.chunk.js.map": "/TestCaseGenerator/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0a029308.css",
+    "static/js/main.17545f32.js"
+  ]
+}
