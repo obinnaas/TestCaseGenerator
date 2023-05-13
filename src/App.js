@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import './App.css';
 import logo from './logo.svg';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const testOptions = {
   'Feed/Data Ingestion': (column) => ({
     test_case: `Validate that the "${column}" column in the ingested data corresponds to the expected data type, value and the business rules/implemented logic are accurate`,
-    expected_result: `The "${column}" column in the ingested data should correspond to the expected data type, value and the business rules/implemented logic are accurate`
+    expected_result: `The "${column}" column in the ingested data should correspond to the expected data type, value and the business rules/implemented logic should be accurate.`
   }),
   'Report Automation': (column) => ({
-    test_case: `Validate that the "${column}" column is in the right format and generated based on logic provided`,
-    expected_result: `The "${column}" column should be in the right format and generated based on logic provided.`
+    test_case: `Validate that the "${column}" column is in the required datatype and values generated based on required business logic and rules.`,
+    expected_result: `The "${column}" column should be in the required datatype and values generated based on required business logic and rules.`
   }),
   'Feed/Column Modification': (column) => ({
     test_case: `Validate that the modified/added ingested "${column}" column  is in the right datatype format, value and the business rules/implemented logic is accurate`,
@@ -25,8 +27,8 @@ const testOptions = {
     expected_result: `The "${column}" metric matches the expected values and visualizations accurately represent the data and adhere to the intended design.`
   }),
   'Column Decoding': (column) => ({
-    test_case: `Validate that the "${column}" column is decoded correctly and the values and datatype is in the specified format and logic`,
-    expected_result: `The "${column}" column should be decoded correctly and values and datatype and are in the specified format and logic`
+    test_case: `Validate that the "${column}" column is decoded correctly and the values and datatype are in the specified format and logic`,
+    expected_result: `The "${column}" column should be decoded correctly and the values and datatype are in the specified format and logic`
   }),
 };
 
@@ -35,6 +37,7 @@ function App() {
   const [columnNames, setColumnNames] = useState('');
   const [testOption, setTestOption] = useState('Feed/Data Ingestion');
   const [testCases, setTestCases] = useState([]);
+
 
   const handleGenerateTestCases = () => {
     const columns = columnNames.split('\t');
@@ -47,6 +50,10 @@ function App() {
       newTestCases.push([column, test_case, expected_result, test_steps, actual_result, status]);
     }
     setTestCases(newTestCases);
+    toast('Scroll, View Test Cases and Click Download', {
+      position: 'bottom-left',
+    });
+
   };
 
   const handleDownloadCSV = () => {
@@ -55,7 +62,10 @@ function App() {
       'Test Case ID,Fields,Test Case,Expected Result,Test Steps,Actual result (Not As Expected/As Expected),Status\n';
     testCases.forEach((testCase, index) => {
       const formatted_test_id = `TC${(index + 1).toString().padStart(2, '0')}`;
-      csvContent += `${formatted_test_id},${testCase.join(',')}\n`;
+      const quotedValues = testCase.map((value) =>
+        `"${value.toString().replace(/"/g, '""')}"`
+      );
+      csvContent += `${formatted_test_id},${quotedValues.join(',')}\n`;
     });
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
@@ -69,6 +79,7 @@ function App() {
     <div className="App">
       <img src={logo} alt="Logo" className="logo" />
       <h2>Test Case Generator</h2>
+      <ToastContainer />
       <div className="input-container">
         <div class="parent-container">
         <div className="input-field">
@@ -81,7 +92,7 @@ function App() {
           />
           
         <div className="input-field">
-          <label htmlFor="column-names">Enter column names separated by tabs:</label>
+          <label htmlFor="column-names">Paste column names copied from Excel:</label>
           <input
             id="column-names"
             type="text"
@@ -118,24 +129,27 @@ function App() {
           <table>
             <thead>
               <tr>
-                <th>Test Case ID</th>
+                <th className="no-wrap">Test Case ID</th>
                 <th>Fields</th>
                 <th>Test Case</th>
                 <th>Expected Result</th>
                 <th>Test Steps</th>
-                <th>Actual result (Not As Expected/As Expected)</th>
+                <th className="no-wrap">Actual result (Not As Expected/As Expected)</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              {testCases.map((testCase, index) => (
-                <tr key={index}>
+              {testCases.map((testCase, index) => {
+                const uniqueId = testCase[0];
+                return (
+                <tr key={uniqueId}>
                   <td>{`TC${(index + 1).toString().padStart(2, '0')}`}</td>
                   {testCase.map((value) => (
                     <td key={value}>{value}</td>
                   ))}
                 </tr>
-              ))}
+                )
+                  })}
             </tbody>
           </table>
         </>
