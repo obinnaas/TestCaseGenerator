@@ -10,5 +10,5 @@ The use of this User Interface can provide several benefits to businesses and pr
 In addition, the use of this UI can help to improve the efficiency of testing processes. By generating test cases automatically, testers can focus on executing tests and identifying issues rather than spending time manually creating test cases. This can help to speed up testing cycles and improve the overall quality of the BI reports being tested.
 
 ## 4.0 CONCLUSION
-In conclusion, this Python script provides an easy way to generate test cases for validating the data type and values of columns in a specified table. By automating this process, businesses and projects can save time, reduce errors, improve efficiency, and make better decisions based on accurate data. By following best practices such as using version control and writing clear and concise code, this script can be easily maintained and updated as needed.
+In conclusion, Test Case generator provides an easy way to generate test cases for validating the data type and values of columns in a specified table. By automating this process, businesses and projects can save time, reduce errors, improve efficiency, and make better decisions based on accurate data. By following best practices such as using version control and writing clear and concise code, this script can be easily maintained and updated as needed.
 
