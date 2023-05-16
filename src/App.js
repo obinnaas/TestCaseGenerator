@@ -105,7 +105,7 @@ function App() {
           />
           
         <div className="input-field">
-          <label htmlFor="column-names">Paste column names or type separated by comma:</label>
+          <label htmlFor="column-names">Enter column names or paste from spreadsheet </label>
           <input
             id="column-names"
             type="text"
