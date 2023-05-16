@@ -4,22 +4,22 @@ import logo from './logo.svg';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
+// Define an object containing test options and their corresponding functions
 const testOptions = {
   'Feed/Data Ingestion': (column, tableName) => ({
     test_case: `Validate that the "${column}" column in the ingested record corresponds to the expected data type, value and aligns with the  business rules/logic from the source`,
-    expected_result: `The "${column}" column in the ingested record should correspond to the expected data type, the value and and aligns with the  business rules/logic from the source.`,
-    test_steps: `DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
+    expected_result: `The "${column}" column in the ingested record should correspond to the expected data type, the value and should align with the business rules/logic from the source.`,
+    test_steps: `On Dbeaver, type DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
   }),
   'Report Automation': (column, tableName) => ({
     test_case: `Validate that the "${column}" column is in the required datatype and values generated based on required business logic and rules.`,
     expected_result: `The "${column}" column should be in the required datatype and values generated based on required business logic and rules.`,
-    test_steps: `DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
+    test_steps: `On Dbeaver, DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
   }),
   'Feed/Column Modification': (column, tableName) => ({
     test_case: `Validate that the modified/added ingested "${column}" column is in the right datatype format, value and the business rules/implemented logic is accurate`,
     expected_result: `The modified/added ingested "${column}" column is in the right datatype format, value and the business rules/implemented logic is accurate`,
-    test_steps: `DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
+    test_steps: `On Dbeaver, DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
   }),
   'API development': (column, tableName) => ({
     test_case: `Validate that the "${column}" attribute matches the expected format, structure and value.`,
@@ -27,32 +27,31 @@ const testOptions = {
     test_steps: `Send a request to the API endpoint that returns data for the "${column}" attribute and verify that the format, structure and value are correct`
   }),
   'PowerBI Report': (column, tableName) => ({
-    test_case: `Verify that the "${column}" metric matches the expected values and visualizations accurately represent the data and adhere to the intended design`,
-    expected_result: `The "${column}" metric matches the expected values and visualizations accurately represent the data and adhere to the intended design.`,
+    test_case: `Verify that the "${column}" metric matches the expected values and visualizations accurately represent the data and adhere to the design requirement`,
+    expected_result: `The "${column}" metric matches the expected values and visualizations accurately represent the data and adhere to the design requirement`,
     test_steps: `SELECT "${column}" metric and verify that the values and visualizations are correct`
   }),
   'Column Decoding': (column, tableName) => ({
     test_case: `Validate that the "${column}" column is decoded correctly and the values and datatype are in the specified format and logic`,
     expected_result: `The "${column}" column should be decoded correctly and the values and datatype are in the specified format and logic`,
-    test_steps: `DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
+    test_steps: `On Dbeaver, DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
   }),
 };
-
+// Define the App component
 function App() {
   const [tableName, setTableName] = useState('');
   const [columnNames, setColumnNames] = useState('');
   const [testOption, setTestOption] = useState('Feed/Data Ingestion');
   const [testCases, setTestCases] = useState([]);
-
+// Define a function to handle splitting the column names string into an array of column names
   const handleColumnNames = () => {
-    let separator = '\t';
-    if (columnNames.includes(',')) {
-      separator = ',';
-    }
-    return columnNames.split(separator);
-  };
-
-
+  let separator = /\s+/;
+  if (columnNames.includes(',')) {
+    separator = ',';
+  }
+  return columnNames.split(separator);
+};
+  // Define a function to handle generating test cases
   const handleGenerateTestCases = () => {
     const columns = handleColumnNames();
     const newTestCases = [];
@@ -60,26 +59,34 @@ function App() {
       const { test_case, expected_result, test_steps} = testOptions[testOption](column, tableName);
       const actual_result = '';
       const status = 'Pending';
+      // Push an array containing this column's data into newTestCases
       newTestCases.push([column, test_case, expected_result, test_steps, actual_result, status]);
     }
+    // Display a toast notification to the user
     setTestCases(newTestCases);
     toast('Scroll down, View Test Cases and Click Download', {
       position: 'bottom-left',
     });
 
   };
-
+// Define a function to handle downloading the test cases as a CSV file
   const handleDownloadCSV = () => {
+
+    // Initialize a csvContent variable to a string containing the CSV header row
     let csvContent =
       'data:text/csv;charset=utf-8,' +
       'Test Case ID,Fields,Test Case,Expected Result,Test Steps,Actual result (Not As Expected/As Expected),Status\n';
-    testCases.forEach((testCase, index) => {
+    // Loop over each test case in testCases
+      testCases.forEach((testCase, index) => {
+      // Format the test case ID by adding a leading zero if necessary
       const formatted_test_id = `TC${(index + 1).toString().padStart(2, '0')}`;
+      // Map over the values in testCase and quote them to escape any special characters
       const quotedValues = testCase.map((value) =>
         `"${value.toString().replace(/"/g, '""')}"`
       );
       csvContent += `${formatted_test_id},${quotedValues.join(',')}\n`;
     });
+    // Encode csvContent as a URI
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
