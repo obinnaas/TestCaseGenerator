@@ -1,6 +1,6 @@
-# Test Case Generator
+# Test Case Generator - https://obinnaas.github.io/TestCaseGenerator/
 ## 1.0 INTRODUCTION
-This documentation provides an overview of the Test Generator User Interface that generates test cases for validating the data type and values of columns in a specified table for a BI testing team. The UI prompts the user to enter the table name and column names separated by tabs, then generates a test case for each column and writes it to a CSV file.
+This documentation provides an overview of the Test Generator User Interface that generates test cases for validating the data type and values of columns in a specified table for a BI testing team. The UI prompts the user to enter the table name and column names separated by tabs, then generates a test case for each column and writes it to a CSV file. 
 
 ## 2.0 VERSION CONTROL
 The code is version controlled using Git and is stored in a repository on GitHub. This allows for easy collaboration and tracking of changes to the code.
