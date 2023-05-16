@@ -6,29 +6,35 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const testOptions = {
-  'Feed/Data Ingestion': (column) => ({
-    test_case: `Validate that the "${column}" column in the ingested data corresponds to the expected data type, value and the business rules/implemented logic are accurate`,
-    expected_result: `The "${column}" column in the ingested data should correspond to the expected data type, value and the business rules/implemented logic should be accurate.`
+  'Feed/Data Ingestion': (column, tableName) => ({
+    test_case: `Validate that the "${column}" column in the ingested record corresponds to the expected data type, value and aligns with the  business rules/logic from the source`,
+    expected_result: `The "${column}" column in the ingested record should correspond to the expected data type, the value and and aligns with the  business rules/logic from the source.`,
+    test_steps: `DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
   }),
-  'Report Automation': (column) => ({
+  'Report Automation': (column, tableName) => ({
     test_case: `Validate that the "${column}" column is in the required datatype and values generated based on required business logic and rules.`,
-    expected_result: `The "${column}" column should be in the required datatype and values generated based on required business logic and rules.`
+    expected_result: `The "${column}" column should be in the required datatype and values generated based on required business logic and rules.`,
+    test_steps: `DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
   }),
-  'Feed/Column Modification': (column) => ({
-    test_case: `Validate that the modified/added ingested "${column}" column  is in the right datatype format, value and the business rules/implemented logic is accurate`,
-    expected_result: `The modified/added ingested "${column}" column  is in the right datatype format, value and the business rules/implemented logic is accurate`
+  'Feed/Column Modification': (column, tableName) => ({
+    test_case: `Validate that the modified/added ingested "${column}" column is in the right datatype format, value and the business rules/implemented logic is accurate`,
+    expected_result: `The modified/added ingested "${column}" column is in the right datatype format, value and the business rules/implemented logic is accurate`,
+    test_steps: `DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
   }),
-  'API development': (column) => ({
+  'API development': (column, tableName) => ({
     test_case: `Validate that the "${column}" attribute matches the expected format, structure and value.`,
-    expected_result: `The "${column}" attribute should match the expected format, structure and value.`
+    expected_result: `The "${column}" attribute should match the expected format, structure and value.`,
+    test_steps: `Send a request to the API endpoint that returns data for the "${column}" attribute and verify that the format, structure and value are correct`
   }),
-  'PowerBI Report': (column) => ({
+  'PowerBI Report': (column, tableName) => ({
     test_case: `Verify that the "${column}" metric matches the expected values and visualizations accurately represent the data and adhere to the intended design`,
-    expected_result: `The "${column}" metric matches the expected values and visualizations accurately represent the data and adhere to the intended design.`
+    expected_result: `The "${column}" metric matches the expected values and visualizations accurately represent the data and adhere to the intended design.`,
+    test_steps: `SELECT "${column}" metric and verify that the values and visualizations are correct`
   }),
-  'Column Decoding': (column) => ({
+  'Column Decoding': (column, tableName) => ({
     test_case: `Validate that the "${column}" column is decoded correctly and the values and datatype are in the specified format and logic`,
-    expected_result: `The "${column}" column should be decoded correctly and the values and datatype are in the specified format and logic`
+    expected_result: `The "${column}" column should be decoded correctly and the values and datatype are in the specified format and logic`,
+    test_steps: `DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
   }),
 };
 
@@ -38,19 +44,26 @@ function App() {
   const [testOption, setTestOption] = useState('Feed/Data Ingestion');
   const [testCases, setTestCases] = useState([]);
 
+  const handleColumnNames = () => {
+    let separator = '\t';
+    if (columnNames.includes(',')) {
+      separator = ',';
+    }
+    return columnNames.split(separator);
+  };
+
 
   const handleGenerateTestCases = () => {
-    const columns = columnNames.split('\t');
+    const columns = handleColumnNames();
     const newTestCases = [];
     for (let column of columns) {
-      const { test_case, expected_result } = testOptions[testOption](column);
-      const test_steps = `SELECT ${column} from ${tableName} OR SELECT * from ${tableName}`;
+      const { test_case, expected_result, test_steps} = testOptions[testOption](column, tableName);
       const actual_result = '';
       const status = 'Pending';
       newTestCases.push([column, test_case, expected_result, test_steps, actual_result, status]);
     }
     setTestCases(newTestCases);
-    toast('Scroll, View Test Cases and Click Download', {
+    toast('Scroll down, View Test Cases and Click Download', {
       position: 'bottom-left',
     });
 
@@ -92,7 +105,7 @@ function App() {
           />
           
         <div className="input-field">
-          <label htmlFor="column-names">Paste column names copied from Excel:</label>
+          <label htmlFor="column-names">Paste column names or type separated by comma:</label>
           <input
             id="column-names"
             type="text"
