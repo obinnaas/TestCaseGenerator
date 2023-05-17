@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/TestCaseGenerator/static/css/main.421ef3ca.css",
-    "main.js": "/TestCaseGenerator/static/js/main.9441c053.js",
+    "main.css": "/TestCaseGenerator/static/css/main.80558c13.css",
+    "main.js": "/TestCaseGenerator/static/js/main.3a77fb24.js",
     "static/js/787.28cb0dcd.chunk.js": "/TestCaseGenerator/static/js/787.28cb0dcd.chunk.js",
     "index.html": "/TestCaseGenerator/index.html",
     "static/media/logo.svg": "/TestCaseGenerator/static/media/logo.73c0f0451b4dbea527fba4249b8e1047.svg",
-    "main.421ef3ca.css.map": "/TestCaseGenerator/static/css/main.421ef3ca.css.map",
-    "main.9441c053.js.map": "/TestCaseGenerator/static/js/main.9441c053.js.map",
+    "main.80558c13.css.map": "/TestCaseGenerator/static/css/main.80558c13.css.map",
+    "main.3a77fb24.js.map": "/TestCaseGenerator/static/js/main.3a77fb24.js.map",
     "787.28cb0dcd.chunk.js.map": "/TestCaseGenerator/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.421ef3ca.css",
-    "static/js/main.9441c053.js"
+    "static/css/main.80558c13.css",
+    "static/js/main.3a77fb24.js"
   ]
 }

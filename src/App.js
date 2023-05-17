@@ -9,17 +9,17 @@ const testOptions = {
   'Feed/Data Ingestion': (column, tableName) => ({
     test_case: `Validate that the "${column}" column in the ingested record corresponds to the expected data type, value and aligns with the  business rules/logic from the source`,
     expected_result: `The "${column}" column in the ingested record should correspond to the expected data type, the value and should align with the business rules/logic from the source.`,
-    test_steps: `On Dbeaver, type DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
+    test_steps: `On Dbeaver, Run the DESCRIBE "${column}" command to view the datatype, Run the SELECT "${column}" from ${tableName} OR the SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the business rules/logic from the source.`
   }),
-  'Report Automation': (column, tableName) => ({
+  'Report Development/Automation': (column, tableName) => ({
     test_case: `Validate that the "${column}" column is in the required datatype and values generated based on required business logic and rules.`,
     expected_result: `The "${column}" column should be in the required datatype and values generated based on required business logic and rules.`,
-    test_steps: `On Dbeaver, DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
+    test_steps: `On Dbeaver, Run the DESCRIBE "${column}" command to view the datatype, Run the SELECT "${column}" from ${tableName} OR the SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the required business logic and rules.`
   }),
   'Feed/Column Modification': (column, tableName) => ({
     test_case: `Validate that the modified/added ingested "${column}" column is in the right datatype format, value and the business rules/implemented logic is accurate`,
     expected_result: `The modified/added ingested "${column}" column is in the right datatype format, value and the business rules/implemented logic is accurate`,
-    test_steps: `On Dbeaver, DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
+    test_steps: `On Dbeaver, Run the DESCRIBE "${column}" command to view the datatype, Run the SELECT "${column}" from ${tableName} OR the SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the business rules/logic from the source.`
   }),
   'API development': (column, tableName) => ({
     test_case: `Validate that the "${column}" attribute matches the expected format, structure and value.`,
@@ -29,12 +29,12 @@ const testOptions = {
   'PowerBI Report': (column, tableName) => ({
     test_case: `Verify that the "${column}" metric matches the expected values and visualizations accurately represent the data and adhere to the design requirement`,
     expected_result: `The "${column}" metric matches the expected values and visualizations accurately represent the data and adhere to the design requirement`,
-    test_steps: `SELECT "${column}" metric and verify that the values and visualizations are correct`
+    test_steps: `Check"${column}" metrics and verify that the values and visualizations are correct`
   }),
   'Column Decoding': (column, tableName) => ({
     test_case: `Validate that the "${column}" column is decoded correctly and the values and datatype are in the specified format and logic`,
     expected_result: `The "${column}" column should be decoded correctly and the values and datatype are in the specified format and logic`,
-    test_steps: `On Dbeaver, DESCRIBE ${tableName}, SELECT "${column}" from ${tableName}, SELECT * from ${tableName}`
+    test_steps: `On Dbeaver, Run the DESCRIBE "${column}" command to view the datatype, Run the SELECT "${column}" from ${tableName} OR the SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the business rules/logic from the source.`
   }),
 };
 // Define the App component
@@ -63,12 +63,14 @@ function App() {
       newTestCases.push([column, test_case, expected_result, test_steps, actual_result, status]);
     }
     // Display a toast notification to the user
-    setTestCases(newTestCases);
-    toast('Scroll down, View Test Cases and Click Download', {
-      position: 'bottom-left',
-    });
-
-  };
+    // Display a toast notification to the user if the screen width is greater than 600px
+ setTestCases(newTestCases);
+ if (window.innerWidth > 600) {
+ toast('Scroll down, View and Download Test Cases', {
+ position: 'bottom-left',
+ });
+ }
+ };
 // Define a function to handle downloading the test cases as a CSV file
   const handleDownloadCSV = () => {
 
@@ -174,6 +176,11 @@ function App() {
           </table>
         </>
       )}
+      <div className="button-container">
+          {testCases.length > 0 && window.innerWidth > 600 && (
+            <button onClick={handleDownloadCSV} className="download-csv">Download Test Cases</button>
+          )}
+        </div>
     </div>
   );
 }
