@@ -1,19 +1,107 @@
 .App {
-  font-family: inherit;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 0 50px 50px;
-  background-color: #fcfcfd;
+  background-color: #fcfcfd; 
+  width: 100vw;
+}
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+  background-color: #FFCB04;
+  width: 100vw;
+  overflow-x:unset
+  }
+
+.paragraph-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 100%;
+  flex-direction: column;
+  padding-left: 100px;
   
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
 
+}
+
+.logo {
+  width: 80px; 
+  height: 80px;
+  margin-right: 40px;
+
+}
+
+.image-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  
+}
+
+.image {
+  
+  object-fit: cover;
+  min-width:33.333%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  height: 100%;
+  width: 0;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow-clip-margin: content-box;
+  overflow: clip;
+
+}
+
+.paragraph{
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 15%;
+  margin-bottom: 20px;
+}
+h2 {
+  font-size: 20px;
+}
+h3,h4{
+  font-size: 20px;
+  color: #000;
+  margin-top: 0;
+  text-align: center;
+  margin-block: 10px;
+}
+
+p{
+  font-size: 16px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  text-align: left;
+}
 label {
   font-weight: bold;
   margin-bottom: 10px;
+  color: #161616;
 }
 
 select,
@@ -38,7 +126,7 @@ select {
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 10px;
-  width: 450px;
+  width: 500px;
   flex-basis: calc(50% - 20px);
 }
 
@@ -52,10 +140,10 @@ select {
 
 .input-container {
   overflow-x: auto;
-  background-color: #f1f6fa;
+  background-color: #fcfcfd;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
   padding: 30px;
-  width: 45%;
+  width: 40%;
   margin: auto;
   border-radius: 10px;
 }
@@ -64,25 +152,11 @@ select {
 .parent-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: left;
   flex-direction: column;
   flex-wrap: wrap;
 }
-.logo {
-  width: 100px; 
-  height: 100px;
-}
 
-h2 {
-  background-color: #FFCB04;
-  width: 50%;
-  color: #000;
-  height: 60px; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-}
 
 button {
   background-color: #FFCB04;
@@ -187,6 +261,9 @@ th {
   .parent-container {
     flex-direction: column;
     
+  }
+  .image{
+    display: none;
   }
   .button-container {
     flex-direction: column;

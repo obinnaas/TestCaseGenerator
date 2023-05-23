@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import './App.css';
 import logo from './logo.svg';
+import careerFair1 from './careerFair1.webp';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Define an object containing test options and their corresponding functions
 const testOptions = {
   'Feed/Data Ingestion': (column, tableName) => ({
-    test_case: `Validate that the "${column}" column in the ingested record corresponds to the expected data type, value and aligns with the  business rules/logic from the source`,
-    expected_result: `The "${column}" column in the ingested record should correspond to the expected data type, the value and should align with the business rules/logic from the source.`,
-    test_steps: `On Dbeaver, Run the DESCRIBE "${column}" command to view the datatype, Run the SELECT "${column}" from ${tableName} OR the SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the business rules/logic from the source.`
+    test_case: `Validate that the data type, values, and business logic of the “${column}” column in the ${tableName} table conform to the expected specifications after ingestion.`,
+    expected_result: `The data type, values, and business logic of the “${column}” column in the ${tableName} table should conform to the expected specifications after ingestion`,
+    test_steps: `On Dbeaver, Run DESCRIBE "${column}" command to view the datatype, Run SELECT "${column}" from ${tableName} OR SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the business rules/logic from the source.`
   }),
   'Report Development/Automation': (column, tableName) => ({
     test_case: `Validate that the "${column}" column is in the required datatype and values generated based on required business logic and rules.`,
     expected_result: `The "${column}" column should be in the required datatype and values generated based on required business logic and rules.`,
-    test_steps: `On Dbeaver, Run the DESCRIBE "${column}" command to view the datatype, Run the SELECT "${column}" from ${tableName} OR the SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the required business logic and rules.`
+    test_steps: `On Dbeaver, Run DESCRIBE "${column}" command to view the datatype, Run SELECT "${column}" from ${tableName} OR the SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the required business logic and rules.`
   }),
   'Feed/Column Modification': (column, tableName) => ({
     test_case: `Validate that the modified/added ingested "${column}" column is in the right datatype format, value and the business rules/implemented logic is accurate`,
@@ -34,7 +35,7 @@ const testOptions = {
   'Column Decoding': (column, tableName) => ({
     test_case: `Validate that the "${column}" column is decoded correctly and the values and datatype are in the specified format and logic`,
     expected_result: `The "${column}" column should be decoded correctly and the values and datatype are in the specified format and logic`,
-    test_steps: `On Dbeaver, Run the DESCRIBE "${column}" command to view the datatype, Run the SELECT "${column}" from ${tableName} OR the SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the business rules/logic from the source.`
+    test_steps: `On Dbeaver, Run DESCRIBE "${column}" command to view the datatype, Run SELECT "${column}" from ${tableName} OR the SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the business rules/logic from the source.`
   }),
 };
 // Define the App component
@@ -99,9 +100,26 @@ function App() {
 
   return (
     <div className="App">
-      <img src={logo} alt="Logo" className="logo" />
-      <h2>Test Case Generator</h2>
+      <div className="image-container">
+            <img src= {careerFair1} alt="Img" className="image" />
+          </div>
+      <div className="container">
+      <header className="App-header">
+        <div className="header-container">
+          <div className="logo-container">
+        <img src={logo} alt="Logo" className="logo" />
+          <h2>Test Case Generator</h2>
+          </div>
+      </div>
+      </header>
+    </div>
       <ToastContainer />
+      <div className="paragraph-container">
+      <div className='paragraph'> 
+      <h4>Save test execution time by automating test cases </h4>
+        <p>Test Case generator provides an easy way to generate test cases for validating Business Intelligence Reports. It prompts the BI Test Engineer to enter the table name and column names separated by tabs, commas or spaces, 
+          then generates a test case for each column and then downloaded as a CSV file.</p>
+      </div>
       <div className="input-container">
         <div class="parent-container">
         <div className="input-field">
@@ -135,7 +153,7 @@ function App() {
               </option>
             ))}
           </select>
-            </div>
+          </div>
           </div>
         </div>
         <div className="button-container">
@@ -144,6 +162,7 @@ function App() {
             <button onClick={handleDownloadCSV} className="download-csv">Download Test Cases</button>
           )}
         </div>
+      </div>
       </div>
       
       {testCases.length > 0 && (

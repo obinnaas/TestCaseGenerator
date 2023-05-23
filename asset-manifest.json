@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/TestCaseGenerator/static/css/main.80558c13.css",
-    "main.js": "/TestCaseGenerator/static/js/main.3a77fb24.js",
+    "main.css": "/TestCaseGenerator/static/css/main.05243e3d.css",
+    "main.js": "/TestCaseGenerator/static/js/main.75268ea9.js",
     "static/js/787.28cb0dcd.chunk.js": "/TestCaseGenerator/static/js/787.28cb0dcd.chunk.js",
+    "static/media/careerFair1.webp": "/TestCaseGenerator/static/media/careerFair1.c796c162c1f1505301f8.webp",
     "index.html": "/TestCaseGenerator/index.html",
     "static/media/logo.svg": "/TestCaseGenerator/static/media/logo.73c0f0451b4dbea527fba4249b8e1047.svg",
-    "main.80558c13.css.map": "/TestCaseGenerator/static/css/main.80558c13.css.map",
-    "main.3a77fb24.js.map": "/TestCaseGenerator/static/js/main.3a77fb24.js.map",
+    "main.05243e3d.css.map": "/TestCaseGenerator/static/css/main.05243e3d.css.map",
+    "main.75268ea9.js.map": "/TestCaseGenerator/static/js/main.75268ea9.js.map",
     "787.28cb0dcd.chunk.js.map": "/TestCaseGenerator/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.80558c13.css",
-    "static/js/main.3a77fb24.js"
+    "static/css/main.05243e3d.css",
+    "static/js/main.75268ea9.js"
   ]
 }
