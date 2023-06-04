@@ -1,7 +1,28 @@
 {
-    "cSpell.words": [
-        "Dbeaver",
-        "toastify"
-    ],
-    "compile-hero.disable-compile-files-on-did-save-code": false
+  "cSpell.words": ["Dbeaver", "toastify"],
+  "compile-hero.disable-compile-files-on-did-save-code": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "highlight-matching-tag.styles": {
+    "opening": {
+      "left": {
+        "custom": {
+          "borderWidth": "0 0 0 3px",
+          "borderStyle": "solid",
+          "borderColor": "yellow",
+          "borderRadius": "5px"
+        }
+      },
+      "right": {
+        "custom": {
+          "borderWidth": "0 3px 0 0",
+          "borderStyle": "solid",
+          "borderColor": "yellow",
+          "borderRadius": "5px"
+        }
+      }
+    }
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
