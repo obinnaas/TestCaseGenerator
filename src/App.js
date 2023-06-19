@@ -10,17 +10,17 @@ const testOptions = {
   "Feed/Data Ingestion": (column, tableName) => ({
     test_case: `Validate that the data type, values, and business logic of the "${column}" in the ${tableName} table conform to the expected specifications after ingestion.`,
     expected_result: `The data type, values, and business logic of the "${column}" in the ${tableName} table should conform to the expected specifications after ingestion`,
-    test_steps: `On Dbeaver, Run DESCRIBE "${column}" command to view the datatype, Run SELECT "${column}" from ${tableName} OR SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the business rules/logic from the source.`,
+    test_steps: `On Dbeaver, Run DESCRIBE "${tableName}" command to view the datatype, Run SELECT "${column}" from ${tableName} OR SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the business rules/logic from the source.`,
   }),
   "Report Development/Automation": (column, tableName) => ({
     test_case: `Validate that the "${column}" column is in the required datatype and values generated based on required business logic and rules.`,
     expected_result: `The "${column}" column should be in the required datatype and values generated based on required business logic and rules.`,
-    test_steps: `On Dbeaver, Run DESCRIBE "${column}" command to view the datatype, Run SELECT "${column}" from ${tableName} OR the SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the required business logic and rules.`,
+    test_steps: `On Dbeaver, Run DESCRIBE "${tableName}" command to view the datatype, Run SELECT "${column}" from ${tableName} OR SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the business rules/logic from the source.`,
   }),
   "Feed/Column Modification": (column, tableName) => ({
     test_case: `Validate that the modified/added ingested "${column}" column is in the right datatype format, value and the business rules/implemented logic is accurate`,
     expected_result: `The modified/added ingested "${column}" column is in the right datatype format, value and the business rules/implemented logic is accurate`,
-    test_steps: `On Dbeaver, Run the DESCRIBE "${column}" command to view the datatype, Run the SELECT "${column}" from ${tableName} OR the SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the business rules/logic from the source.`,
+    test_steps: `On Dbeaver, Run DESCRIBE "${tableName}" command to view the datatype, Run SELECT "${column}" from ${tableName} OR SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the business rules/logic from the source.`,
   }),
   "API development": (column, tableName) => ({
     test_case: `Validate that the "${column}" attribute matches the expected format, structure and value.`,
@@ -35,7 +35,7 @@ const testOptions = {
   "Column Decoding": (column, tableName) => ({
     test_case: `Validate that the "${column}" column is decoded correctly and the values and datatype are in the specified format and logic`,
     expected_result: `The "${column}" column should be decoded correctly and the values and datatype are in the specified format and logic`,
-    test_steps: `On Dbeaver, Run DESCRIBE "${column}" command to view the datatype, Run SELECT "${column}" from ${tableName} OR the SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the business rules/logic from the source.`,
+    test_steps: `On Dbeaver, Run DESCRIBE "${tableName}" command to view the datatype, Run SELECT "${column}" from ${tableName} OR SELECT * from ${tableName} command to retrieve all rows and check that the values in the "${column} column aligns with the business rules/logic from the source.`,
   }),
 };
 // Define the App component
@@ -129,8 +129,8 @@ function App() {
             Test Case generator provides an easy way to generate test cases for
             validating Business Intelligence Reports. It prompts the BI Test
             Engineer to enter the table name and column names separated by tabs,
-            commas or spaces, then generates a test case for each column and
-            then downloaded as a CSV file.
+            commas or spaces, then generates a test case for each column which
+            can then be downloaded as a CSV file.
           </p>
         </div>
         <div className="input-container">
