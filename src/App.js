@@ -179,6 +179,8 @@ function App() {
               <button onClick={handleDownloadCSV} className="download-csv">
                 Download Test Cases
               </button>
+             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9835855348267701"
+     crossorigin="anonymous"></script>
             )}
           </div>
         </div>
